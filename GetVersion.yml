@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Show facts info
+  hosts: localhost
   gather_facts: yes
   become: false
   tasks:
