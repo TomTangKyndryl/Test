@@ -1,0 +1,6 @@
+---
+- name: Show facts info
+  hosts: all
+  tasks:
+    - name: Include other tasks file
+      include_tasks: imported_tasks.yml
