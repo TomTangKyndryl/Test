@@ -21,4 +21,4 @@
     when: freespace.stdout_lines[1]|int < 1500000000
 
   - debug:
-      msg: "Directory C: has free space enough. Continue play. Free space {{ freespace.stdout_lines[1]|int }}"
+      msg: "Directory C: has free space enough. Continue play. Free space {{ freespace.stdout_lines[1]|int }} "
