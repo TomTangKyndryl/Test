@@ -1,0 +1,8 @@
+---
+
+gather_facts: yes
+  become: false
+  tasks:
+  - name: Windows of Linux
+    debug: msg="This is Linux!"
+    when: ansible_system == "Linux"
