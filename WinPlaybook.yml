@@ -1,0 +1,7 @@
+---
+- name: Hello World!
+  hosts: all
+
+  tasks:
+  - name: Encription status...
+    debug: msg="This is my windows playbook"
