@@ -14,4 +14,4 @@
       
       
   - name: Encription status...
-    debug: msg="I created this debug message '{{ my_variable }}'"
+    debug: msg="I created this debug message. '{{ my_variable }}'"
