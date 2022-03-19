@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: GetFactsDemo
+  hosts: all
   gather_facts: yes
   become: false
   tasks:
