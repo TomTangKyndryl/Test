@@ -7,7 +7,7 @@
 #    debug: msg="This is my windows playbook"
 #---
 - name: Check disk space C for patch
-  hosts: '{{ host }}'
+  hosts: all
   gather_facts: no
   tasks:
   - name: 'Check free space in C:'
