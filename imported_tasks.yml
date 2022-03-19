@@ -1,8 +1,4 @@
 ---
-- name: Imported Tasks
-  hosts: all
-
-  tasks:
-
-  - name: Hello World! {{ my_variable }}
-    shell: echo "I have tried to import this task"
+tasks:
+- name: Hello World! {{ my_variable }}
+  shell: echo "I have tried to import this task"
