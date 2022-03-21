@@ -1,6 +1,11 @@
-- name: Register loop output as a variable
-  ansible.builtin.shell: "echo {{ item }}"
-  loop:
-    - "one"
-    - "two"
-  register: echo
+---
+- name: Hello World!
+  hosts: all
+
+  tasks:
+    - name: Register loop output as a variable
+      ansible.builtin.shell: "echo {{ item }}"
+      loop:
+        - "one"
+        - "two"
+      register: echo
