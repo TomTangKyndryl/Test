@@ -9,3 +9,7 @@
         - "one"
         - "two"
       register: echo
+      
+    - name: Print output
+      debug:
+        msg: "Echo output: {{ echo }}"
