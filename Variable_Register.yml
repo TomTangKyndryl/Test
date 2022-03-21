@@ -1,7 +1,14 @@
+---
 - name: Show value of whoami
   hosts: all
   tasks:
     - name: capture output of whoami command
-      command: whoami
-      register: login
-    - debug: var=login.stdout
+      command: "whoami"
+      register: who_am_i_response
+    - debug: var=who_am_i_response.stdout
+
+
+#    - name: Create variable from command
+#      command: "echo Hello"
+#      register: command_output
+#    - debug: msg="{{command_output.stdout}}"
