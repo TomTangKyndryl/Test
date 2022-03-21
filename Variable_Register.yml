@@ -8,4 +8,4 @@
    
     - name: Print output
       debug:
-        msg: "whoami output: {{ whoami_out.stdout }}"
+        msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
