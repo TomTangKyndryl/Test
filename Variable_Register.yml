@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Save the result of 'whoami' in 'whoami_out'
-      ansible.windows.win_command: whoami
+      win_command: whoami
       register: whoami_out
   # - debug: var=who_am_i_response.stdout
 
