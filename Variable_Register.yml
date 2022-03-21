@@ -8,7 +8,7 @@
    
     - name: Print version
       debug:
-      msg: "Ansible Version: {{ whoami_out.stdout }}"
+        msg: "Ansible Version: {{ whoami_out.stdout }}"
    
 
 #    - name: Create variable from command
