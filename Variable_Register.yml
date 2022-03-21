@@ -2,8 +2,8 @@
 - name: Show value of whoami v2
   hosts: all
   tasks:
-    - name: capture output of whoami command
-      command: whoami
+    - name: Check my user name
+      ansible.windows.win_whoami:
   #    register: who_am_i_response
   # - debug: var=who_am_i_response.stdout
 
