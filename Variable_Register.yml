@@ -6,12 +6,6 @@
       win_command: whoami
       register: whoami_out
    
-    - name: Print version
+    - name: Print output
       debug:
-        msg: "Ansible Version: {{ whoami_out.stdout }}"
-   
-
-#    - name: Create variable from command
-#      command: "echo Hello"
-#      register: command_output
-#    - debug: msg="{{command_output.stdout}}"
+        msg: "whoami output: {{ whoami_out.stdout }}"
