@@ -1,5 +1,5 @@
 ---
-- name: Show value of whoami
+- name: Show value of whoami v2
   hosts: all
   tasks:
     - name: capture output of whoami command
