@@ -5,7 +5,7 @@
     - name: Save the result of 'whoami' in 'whoami_out'
       win_command: whoami
       register: whoami_out
-  # - debug: var=who_am_i_response.stdout
+      debug: var=whoami_out.stdout
 
 
 #    - name: Create variable from command
