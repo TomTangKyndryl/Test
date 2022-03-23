@@ -24,17 +24,17 @@
     shell: echo "Text1"
     
   - name: Hello World! {{ text2 }}
-    shell: echo "Text1"
+    shell: echo "Text2"
     
   - name: Hello World! {{ text3 }}
-    shell: echo "Text1"
+    shell: echo "Text3"
     
   - name: Hello World! {{ text4 }}
-    shell: echo "Text1"
+    shell: echo "Text4"
     
   - name: Hello World! {{ text5 }}
-    shell: echo "Text1"
+    shell: echo "Text5"
     
   - name: Hello World! {{ text6 }}
-    shell: echo "Text1"
+    shell: echo "Text6"
 
