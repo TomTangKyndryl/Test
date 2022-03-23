@@ -12,11 +12,11 @@
       This is the first line
       This is the second line
       This is the third line
-    text5: "Antidisestab\nlishmentarianism.\n\nGet on it."
+    text5: "First line\nSecond line\n\nFourth line"
     text6: |-
-        Antidisestab
-           lishmentarianism.
-        lishmentarianism.   
+        First line
+           Second line with indent
+        third line   
 
   tasks:
 
