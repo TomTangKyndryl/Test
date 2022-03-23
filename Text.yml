@@ -10,8 +10,10 @@
       This is the third line
     text4: |
       This is the first line
-      This is the second line
+      
       This is the third line
+      
+      This is the fifth line
     text5: "First line\nSecond line\n\nFourth line"
     text6: |-
         First line
