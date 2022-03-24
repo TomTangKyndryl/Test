@@ -40,3 +40,11 @@
   - name: Hello World! {{ text6 }}
     shell: echo "Text6"
 
+  - name: Setting facts so that they will be persisted in the fact cache
+      set_fact:
+        one_fact: This value
+        other_fact: Something else
+        cacheable: yes
+        
+  - name: Hello World! {{ one_fact }}
+    shell: echo "Facts"
