@@ -17,3 +17,6 @@
       
     - name: Print output
       debug: msg={{ results }}
+
+# Email module
+# https://docs.ansible.com/ansible/2.9/modules/mail_module.html#mail-module
