@@ -14,11 +14,19 @@
       name: spooler
       state: restarted
       
-  - name: Check if a service is installed
-    win_service:
-      # name: service name
-    register: service_info
-    
+  - name: Save the result of 'whoami' in 'whoami_out'
+    win_command: "Get-Service -Displayname '*network*'"
+    register: services_status
+   
   - name: Print output
     debug:
-      msg: "whoami output: {{ service_info }}"
+      msg: "whoami output: {{ services_status }}"
+
+  # - name: Check if a service is installed
+    # win_service:
+      # name: service name
+    # register: service_info
+    
+  # - name: Print output
+    # debug:
+      # msg: "whoami output: {{ service_info }}"
