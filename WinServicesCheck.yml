@@ -1,8 +1,8 @@
 --- 
-hosts: all
-name: "Service Checker"
-tasks: 
-  - name: Restart a service
-    state: restarted
-    win_service: 
-      name: spooler
+  hosts: all
+  name: "Service Checker"
+  tasks: 
+    - name: Restart a service
+      state: restarted
+      win_service: 
+        name: spooler
