@@ -1,38 +1,25 @@
 
----
-- name: Service Checker
-  hosts: all
-  #collections:
-  #  - ansible.windows
-
+--- 
+- 
   gather_facts: true
-
-  tasks:
-    - name: Restart a service
-      win_service:
-        name: spooler
+  hosts: all
+  name: "Service Checker"
+  tasks: 
+    - 
+      name: "Restart a service"
       state: restarted
- 
-    - name: Run basic PowerShell script
-      ansible.windows.win_powershell:
-       script: |
-         echo "Hello World"
-       
-    - name: Save the result of 'whoami' in 'whoami_out'
-      ansible.windows.win_powershell:
-        script: |
-          echo Get-Service -Displayname '*network*'
+      win_service: 
+        name: spooler
+    - 
+      ansible.windows.win_powershell: 
+        script: "echo \"Hello World\"\n"
+      name: "Run basic PowerShell script"
+    - 
+      ansible.windows.win_powershell: 
+        script: "echo Get-Service -Displayname '*network*'\n"
+      name: "Save the result of 'whoami' in 'whoami_out'"
       register: services_status
-   
-    - name: Print output
-      debug:
+    - 
+      debug: 
         msg: "whoami output: {{ services_status }}"
-
-  # - name: Check if a service is installed
-    # win_service:
-      # name: service name
-    # register: service_info
-    
-  # - name: Print output
-    # debug:
-      # msg: "whoami output: {{ service_info }}"
+      name: "Print output"
