@@ -4,7 +4,11 @@
   hosts: all
 
   tasks:
+
+    - name: Hello World! {{ text1 }}
+      shell: echo "Text1"
+  
     - name: get the status on all snc_ services
       ansible.windows.win_service_info:
-        name: snc_*
+        name: Win*
       register: service_info
