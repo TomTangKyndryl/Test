@@ -15,7 +15,7 @@
       state: restarted
       
   - name: Save the result of 'whoami' in 'whoami_out'
-    win_command: "Get-Service -Displayname '*network*'"
+    win_command: Get-Service -Displayname '*network*'
     register: services_status
    
   - name: Print output
