@@ -2,7 +2,7 @@
 - name: Show value of whoami v2
   hosts: all
   tasks:
-    - win_shell: C:\somescript.ps1 >> C:\somelog.txt
+    - win_shell: Get-Service -Displayname "*network*"
     
     - name: Save the result of 'whoami' in 'whoami_out'
       win_command: whoami
