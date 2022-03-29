@@ -7,7 +7,7 @@
       
     - name: Print output
       debug:
-        msg: "whoami output: {{ stuff.stdout_lines[0] }}"
+        msg: "whoami output: {{ stuff }}"
     
     - name: Save the result of 'whoami' in 'whoami_out'
       win_command: whoami
