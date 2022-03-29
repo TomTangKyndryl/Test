@@ -1,9 +1,11 @@
---- 
-- name: Hello World!
+---
+- name: Show value of whoami v2
   hosts: all
-
   tasks:
-    - name: Restart a service
-      state: restarted
-      win_service: 
-        name: spooler
+    - name: Save the result of 'whoami' in 'whoami_out'
+      win_command: whoami
+      register: whoami_out
+   
+    - name: Print output
+      debug:
+        msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
