@@ -9,3 +9,8 @@
     - name: Print output
       debug:
         msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
+        
+    - name: Run basic PowerShell script
+      ansible.windows.win_powershell:
+      script: |
+        Get-Service -Displayname "*network*"
