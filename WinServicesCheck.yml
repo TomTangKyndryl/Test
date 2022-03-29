@@ -12,5 +12,5 @@
         
     - name: Run basic PowerShell script
       ansible.windows.win_powershell:
-      script: |
-        Get-Service -Displayname "*network*"
+        script: |
+          Get-Service -Displayname "*network*"
