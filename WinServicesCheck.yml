@@ -9,7 +9,7 @@
         - Remote
       
     - name: Print output
-      debug: msg={{ stuff.stdout.split('\n')[:-1] }}
+      debug: msg={{ stuff }}
       #debug:
       #  msg: |
       #    "\r\n {{ stuff.stdout.split('\r\n') }}"
