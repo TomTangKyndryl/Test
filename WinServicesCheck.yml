@@ -15,7 +15,9 @@
       state: restarted
       
   - name: Save the result of 'whoami' in 'whoami_out'
-    win_powershell: Get-Service -Displayname '*network*'
+    win_powershell:
+      script: |
+        echo Get-Service -Displayname '*network*'
     register: services_status
    
   - name: Print output
