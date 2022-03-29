@@ -18,3 +18,7 @@
     win_service:
       name: service name
     register: service_info
+    
+  - name: Print output
+    debug:
+      msg: "whoami output: {{ service_info }}"
