@@ -7,10 +7,7 @@
 
   tasks:
 
-    - name: Hello World! {{ text1 }}
-      shell: echo "Text1"
-  
-    - name: get the status on all snc_ services
-      ansible.windows.win_service_info:
-        name: Win*
-      register: service_info
+  - name: Restart a service
+    win_service:
+      name: spooler
+      state: restarted
