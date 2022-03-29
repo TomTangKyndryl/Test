@@ -5,8 +5,9 @@
 - win_shell: Get-Service -Displayname "*{{ item }}*" | select status
   register: stuff
   
-- set_facts:
-  results: "{{ results + stuff.stdout_lines[2] }}"
+- name: Add to fact
+  set_facts:
+    results: "{{ results + stuff.stdout_lines[2] }}"
 
 - name: Print output
   debug: msg={{ stuff }}
