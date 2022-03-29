@@ -1,5 +1,8 @@
+# Get all information
+#- win_shell: Get-Service -Displayname "*{{ item }}*"
+
 ---
-- win_shell: Get-Service -Displayname "*{{ item }}*"
+- win_shell: Get-Service "*{{ item }}*" | select status
   register: stuff
       
 - name: Print output
