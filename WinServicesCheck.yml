@@ -14,11 +14,11 @@
       name: spooler
       state: restarted
  
- - name: Run basic PowerShell script
+  - name: Run basic PowerShell script
    ansible.windows.win_powershell:
      script: |
        echo "Hello World"
- 
+       
   - name: Save the result of 'whoami' in 'whoami_out'
     ansible.windows.win_powershell:
       script: |
