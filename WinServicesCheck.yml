@@ -7,21 +7,22 @@
       - Remote
  
   tasks:
-    block:
-      - win_shell: Get-Service -Displayname "*{{ item }}*"
-        register: stuff
+    - name: Loop through services
+      block:
+        - win_shell: Get-Service -Displayname "*{{ item }}*"
+          register: stuff
       
-      - name: Print output
-        debug: msg={{ stuff }}
+        - name: Print output
+          debug: msg={{ stuff }}
       #debug:
       #  msg: |
       #    "\r\n {{ stuff.stdout.split('\r\n') }}"
     
-      - name: Save the result of 'whoami' in 'whoami_out'
-        win_command: whoami
-        register: whoami_out
+        - name: Save the result of 'whoami' in 'whoami_out'
+          win_command: whoami
+          register: whoami_out
    
-      - name: Print output
-        debug:
-          msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
-    loop: "{{ service_to_check }}"
+        - name: Print output
+          debug:
+            msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
+      loop: "{{ service_to_check }}"
