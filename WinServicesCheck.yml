@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - win_shell: Get-Service -Displayname "*{{ item }}*"
-      register: stuff
+      register: stuff.stdout[1]
       loop:
         - Network
         - Remote
