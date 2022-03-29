@@ -10,5 +10,10 @@
       debug:
         msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
         
+    - name: Retrieve the input based on stdin
+      ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
+      args:
+        stdin: Input message
+        
     - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
       ansible.windows.win_shell: Get-Service -Displayname "*network*"
