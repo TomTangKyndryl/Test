@@ -7,28 +7,21 @@
       - Remote
  
   tasks:
-    - win_shell: Get-Service -Displayname "*{{ item }}*"
-      register: stuff
-      loop: "{{ service_to_check }}"
+    block:
+      - win_shell: Get-Service -Displayname "*{{ item }}*"
+        register: stuff
       
-    - name: Print output
-      debug: msg={{ stuff }}
+      - name: Print output
+        debug: msg={{ stuff }}
       #debug:
       #  msg: |
       #    "\r\n {{ stuff.stdout.split('\r\n') }}"
     
-    - name: Save the result of 'whoami' in 'whoami_out'
-      win_command: whoami
-      register: whoami_out
+      - name: Save the result of 'whoami' in 'whoami_out'
+        win_command: whoami
+        register: whoami_out
    
-    - name: Print output
-      debug:
-        msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
-        
-#    - name: Retrieve the input based on stdin
-#      ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
-#      args:
-#        stdin: Input message
-        
-#    - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
-#      ansible.windows.win_shell: Get-Service -Displayname "*network*"
+      - name: Print output
+        debug:
+          msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
+    loop: "{{ service_to_check }}"
