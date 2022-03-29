@@ -8,26 +8,25 @@
   gather_facts: true
 
   tasks:
-
-  - name: Restart a service
-    win_service:
-      name: spooler
+    - name: Restart a service
+      win_service:
+        name: spooler
       state: restarted
  
-  - name: Run basic PowerShell script
-   ansible.windows.win_powershell:
-     script: |
-       echo "Hello World"
+    - name: Run basic PowerShell script
+      ansible.windows.win_powershell:
+       script: |
+         echo "Hello World"
        
-  - name: Save the result of 'whoami' in 'whoami_out'
-    ansible.windows.win_powershell:
-      script: |
-        echo Get-Service -Displayname '*network*'
-    register: services_status
+    - name: Save the result of 'whoami' in 'whoami_out'
+      ansible.windows.win_powershell:
+        script: |
+          echo Get-Service -Displayname '*network*'
+      register: services_status
    
-  - name: Print output
-    debug:
-      msg: "whoami output: {{ services_status }}"
+    - name: Print output
+      debug:
+        msg: "whoami output: {{ services_status }}"
 
   # - name: Check if a service is installed
     # win_service:
