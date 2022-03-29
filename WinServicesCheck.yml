@@ -9,7 +9,7 @@
   tasks:
     - win_shell: Get-Service -Displayname "*{{ item }}*"
       register: stuff
-      loop: service
+      loop: "{{ service }}"
       
     - name: Print output
       debug: msg={{ stuff }}
