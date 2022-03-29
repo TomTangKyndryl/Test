@@ -1,5 +1,5 @@
 ---
-- name: Show value of whoami v2
+- name: Check the services
   hosts: all
   vars:
     service_to_check:
@@ -7,6 +7,6 @@
       - Remote
  
   tasks:
-    - name: load each db
-      include_tasks: "create_db_each.yml"
+    - name: Go through each service
+      include_tasks: "WinServicesCheck_LoopedTasks.yml"
       loop: "{{ service_to_check }}"
