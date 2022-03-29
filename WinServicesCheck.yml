@@ -7,7 +7,7 @@
       
     - name: Print output
       debug:
-        msg: "{{ stuff.stdout.split('\n\r') }}"
+        msg: "\r\n {{ stuff.stdout.split('\r\n') }}"
     
     - name: Save the result of 'whoami' in 'whoami_out'
       win_command: whoami
