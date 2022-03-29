@@ -1,12 +1,15 @@
 ---
 - name: Show value of whoami v2
   hosts: all
+  vars:
+    service:
+      - Network
+      - Remote
+ 
   tasks:
     - win_shell: Get-Service -Displayname "*{{ item }}*"
       register: stuff
-      loop:
-        - Network
-        - Remote
+      loop: service
       
     - name: Print output
       debug: msg={{ stuff }}
