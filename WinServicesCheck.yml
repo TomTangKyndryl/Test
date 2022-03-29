@@ -13,9 +13,14 @@
     win_service:
       name: spooler
       state: restarted
-      
+ 
+ - name: Run basic PowerShell script
+   ansible.windows.win_powershell:
+     script: |
+       echo "Hello World"
+ 
   - name: Save the result of 'whoami' in 'whoami_out'
-    win_powershell:
+    ansible.windows.win_powershell:
       script: |
         echo Get-Service -Displayname '*network*'
     register: services_status
