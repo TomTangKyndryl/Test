@@ -2,6 +2,8 @@
 ---
 - name: Service Checker
   hosts: all
+  collections:
+    - ansible.windows
 
   tasks:
 
