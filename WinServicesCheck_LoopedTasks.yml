@@ -7,7 +7,7 @@
   
 - name: Add to fact
   set_fact:
-    results: "{{ results + [stuff.stdout_lines[2]] }}"
+    results: "{{ results + [stuff.stdout_lines[3]] }}"
 
 - name: Print output
   debug: msg={{ stuff }}
