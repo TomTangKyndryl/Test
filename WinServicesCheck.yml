@@ -6,7 +6,7 @@
       register: stuff
       
     - name: Print output
-      debug: msg={{ stuff.stdout.split('\n')[:-1] }}
+      debug: msg={{ stuff.stdout.replace("\r", "").split('\n')[:-1] }}
       #debug:
       #  msg: |
       #    "\r\n {{ stuff.stdout.split('\r\n') }}"
