@@ -5,9 +5,16 @@
   #collections:
   #  - ansible.windows
 
+  gather_facts: true
+
   tasks:
 
   - name: Restart a service
     win_service:
       name: spooler
       state: restarted
+      
+  - setup:
+    register: ansible_facts
+  - debug: item
+    with_dict: ansible_facts
