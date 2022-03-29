@@ -3,6 +3,11 @@
   hosts: all
   tasks:
     - win_shell: Get-Service -Displayname "*network*"
+      register: stuff
+      
+    - name: Print output
+      debug:
+        msg: "whoami output: {{ stuff.stdout_lines[0] }}"
     
     - name: Save the result of 'whoami' in 'whoami_out'
       win_command: whoami
@@ -12,10 +17,10 @@
       debug:
         msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"
         
-    - name: Retrieve the input based on stdin
-      ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
-      args:
-        stdin: Input message
+#    - name: Retrieve the input based on stdin
+#      ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
+#      args:
+#        stdin: Input message
         
-    - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
-      ansible.windows.win_shell: Get-Service -Displayname "*network*"
+#    - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
+#      ansible.windows.win_shell: Get-Service -Displayname "*network*"
