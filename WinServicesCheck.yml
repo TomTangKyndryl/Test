@@ -14,9 +14,7 @@
       name: spooler
       state: restarted
       
-  - name: Populate service facts
-    ansible.builtin.service_facts:
-
-  - name: Print service facts
-    ansible.builtin.debug:
-      var: ansible_facts.services
+  - name: Check if a service is installed
+    win_service:
+      name: service name
+    register: service_info
