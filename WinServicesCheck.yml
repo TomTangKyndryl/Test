@@ -10,16 +10,3 @@
       state: restarted
       win_service: 
         name: spooler
-    - 
-      ansible.windows.win_powershell: 
-        script: "echo \"Hello World\"\n"
-      name: "Run basic PowerShell script"
-    - 
-      ansible.windows.win_powershell: 
-        script: "echo Get-Service -Displayname '*network*'\n"
-      name: "Save the result of 'whoami' in 'whoami_out'"
-      register: services_status
-    - 
-      debug: 
-        msg: "whoami output: {{ services_status }}"
-      name: "Print output"
