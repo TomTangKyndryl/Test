@@ -5,6 +5,8 @@
     service_to_check:
       - Network
       - Remote
+  set_facts:
+    results:
  
   tasks:
     - name: Go through each service
