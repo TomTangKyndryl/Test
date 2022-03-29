@@ -4,19 +4,7 @@
   hosts: all
 
   tasks:
-    - name: Get info for all installed services
-      ansible.windows.win_service:
-        register: service_info
-
-    - name: Get info for a single service
-      ansible.windows.win_service:
-        name: WinRM
+    - name: get the status on all snc_ services
+      ansible.windows.win_service_info:
+        name: snc_*
       register: service_info
-
-    - name: Get info for a service using its display name
-      ansible.windows.win_service:
-        name: Windows Remote Management (WS-Management)
-  
-    - name: Find all services that start with 'win'
-      ansible.windows.win_service:
-        name: win*
