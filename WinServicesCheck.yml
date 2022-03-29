@@ -5,10 +5,12 @@
     service_to_check:
       - Network
       - Remote
-  set_facts:
-    results: []
  
   tasks:
+    - name: Set facts
+      set_facts:
+        results: []
+  
     - name: Go through each service
       include_tasks: "WinServicesCheck_LoopedTasks.yml"
       loop: "{{ service_to_check }}"
