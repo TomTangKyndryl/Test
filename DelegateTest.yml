@@ -5,7 +5,10 @@
   tasks:
 
   - name: Creates directory as directory
-    file:
-      path: /tmp/MyTest
-      state: directory
+    block:
+      - name: Create Directory
+        file:
+          path: /tmp/MyTest
+          state: directory
     delegate_to: 127.0.0.1
+    run_once: True
