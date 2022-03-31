@@ -26,5 +26,8 @@
       - name: Read file to fact
         set_fact:
           file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+          
+      - name: Encription status...
+        debug: msg="The text from file- '{{ file_text }}'"
 
     delegate_to: 127.0.0.1
