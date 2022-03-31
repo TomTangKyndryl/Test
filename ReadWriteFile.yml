@@ -29,5 +29,6 @@
           
       - name: Show content from file
         debug: msg="The text from file- '{{ file_text }}'"
+        when: inventory_hostname != ansible_play_hosts_all[-1]
 
     delegate_to: 127.0.0.1
