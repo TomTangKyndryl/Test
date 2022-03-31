@@ -4,7 +4,27 @@
 
   tasks:
 
-  - name: copy upstart script
-    template: 
-      src: myCompany-service.conf.j2 
-      dest: "/etc/init/myCompany-service.conf"
+  - name: Read write text file test
+    block:
+
+      - name: Create Directory
+        file:
+          path: /tmp/MyTest
+          state: directory
+        delegate_to: 127.0.0.1
+
+      - name: Creating an empty file
+        file:
+          path: "/tmp/MyTest/MyFile.txt"
+          state: touch
+
+      - name: Copy text to file
+        copy:
+          content: "This is my text that i copied"
+          dest: "/tmp/MyTest/MyFile.txt"
+
+      - name: Read file to fact
+        set_fact:
+          file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+
+    delegate_to: 127.0.0.1
