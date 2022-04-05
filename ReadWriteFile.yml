@@ -25,17 +25,18 @@
       #    content: "This is my text that i copied"
       #    dest: "/tmp/MyTest/MyFile.txt"
           
-      - name: Copy more text to the file
+      - name: Copy line of text to file
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: "This is my text that i copied"
+          line: "This is my text that i copied {{ hostvars[inventory_hostname].ansible_host }} "
           #create: no
           insertafter: EOF
           
       - name: Read file to fact
         set_fact:
           file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
-          
+        run_once: true
+        
       - name: Show content from file
         debug: msg="The text from file- '{{ file_text }}'"
         when: inventory_hostname != ansible_play_hosts_all[-1]
