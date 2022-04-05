@@ -60,4 +60,15 @@
           # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
           run_once: true
 
-    # delegate_to: 127.0.0.1
+
+        # Sending an e-mail using Gmail SMTP servers
+      - mail:
+        host: smtp.gmail.com
+        port: 587
+        #username: username@gmail.com
+        #password: mysecret
+        to: Chris Vickers <john.smith@example.com>
+        subject: Ansible-report
+        body: '{{ file_text }}'
+        delegate_to: localhost
+        run_once: true
