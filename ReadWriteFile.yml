@@ -28,7 +28,7 @@
       - name: Copy line of text to file
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: "This is my text that i copied {{ ansible_system }} "
+          line: "This is my text that i copied {{ ansible_hostname }} "
           #create: no
           insertafter: EOF
           
