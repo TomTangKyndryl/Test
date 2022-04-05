@@ -20,10 +20,16 @@
           state: touch
         run_once: true
 
-      - name: Copy text to file
-        copy:
-          content: "This is my text that i copied"
-          dest: "/tmp/MyTest/MyFile.txt"
+      #- name: Copy text to file
+      #  copy:
+      #    content: "This is my text that i copied"
+      #    dest: "/tmp/MyTest/MyFile.txt"
+          
+      - name: Copy more text to the file
+        lineinfile:
+          path: "/tmp/MyTest/MyFile.txt"
+          line: 192.168.1.99 foo.lab.net foo
+          create: no
 
       - name: Read file to fact
         set_fact:
