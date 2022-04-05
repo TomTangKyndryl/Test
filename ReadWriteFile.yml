@@ -52,7 +52,9 @@
           delegate_to: 127.0.0.1
         
         - name: Show content from file
-          debug: msg="The text from file- '{{ file_text }}'"
+          debug:
+            msg: |
+              "{{ file_text }}"
           # Only run on the last host
           when: inventory_hostname != ansible_play_hosts_all[-1]
           # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
