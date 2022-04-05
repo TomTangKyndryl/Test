@@ -24,7 +24,7 @@
       - name: Copy line of text to file
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: "This is my text that i copied {{ ansible_hostname }} \r\n"
+          line: "This is my text that i copied {{ ansible_hostname }} "
           insertafter: EOF
         delegate_to: 127.0.0.1
        
