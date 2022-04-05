@@ -18,6 +18,7 @@
         file:
           path: "/tmp/MyTest/MyFile.txt"
           state: touch
+        delegate_to: 127.0.0.1
         run_once: true
 
       #- name: Copy text to file
@@ -31,11 +32,13 @@
           line: "This is my text that i copied {{ ansible_hostname }} "
           #create: no
           insertafter: EOF
-          
+        delegate_to: 127.0.0.1
+       
       - name: Read file to fact
         set_fact:
           file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
         run_once: true
+        delegate_to: 127.0.0.1
         
       - name: Show content from file
         debug: msg="The text from file- '{{ file_text }}'"
