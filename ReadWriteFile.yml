@@ -28,7 +28,7 @@
       - name: Copy more text to the file
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: 192.168.1.99 foo.lab.net foo
+          line: "This is my text that i copied"
           create: no
 
       - name: Read file to fact
