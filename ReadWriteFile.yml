@@ -20,11 +20,24 @@
           state: touch
         delegate_to: 127.0.0.1
         run_once: true
-          
-      - name: Copy line of text to file
+
+      - name: Write host name
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: "This is my text that i copied {{ ansible_hostname }} "
+          line: "Host {{ ansible_hostname }} "
+          insertafter: EOF
+        delegate_to: 127.0.0.1
+       
+      - win_shell: Get-Service
+        register: stuff
+       
+      - name: Show content from file
+        debug: msg="{{ stuff }}"
+       
+      - name: Copy services to file
+        lineinfile:
+          path: "/tmp/MyTest/MyFile.txt"
+          line: "{{ stuff }}"
           insertafter: EOF
         delegate_to: 127.0.0.1
        
