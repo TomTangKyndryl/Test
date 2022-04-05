@@ -27,7 +27,7 @@
         - name: Write debug message
           debug:
             msg: |
-              "Host {{ ansible_hostname }}"
+              "XXX Host {{ ansible_hostname }}"
               "{{ stuff.stdout }}"
               ""
               ""
@@ -36,7 +36,7 @@
           lineinfile:
             path: "/tmp/MyTest/MyFile.txt"
             line: |
-              "Host {{ ansible_hostname }}"
+              "XXX Host {{ ansible_hostname }}"
               "{{ stuff.stdout }}"
               ""
               ""
