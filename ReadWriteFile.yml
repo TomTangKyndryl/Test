@@ -54,7 +54,7 @@
         - name: Show content from file
           debug:
             msg: |
-              "{{ file_text }}"
+              "{{ file_text | replace('\\r\\n','\\\\r\\\\n') }}"
           # Only run on the last host
           when: inventory_hostname != ansible_play_hosts_all[-1]
           # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
