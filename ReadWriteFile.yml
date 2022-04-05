@@ -32,12 +32,12 @@
         register: stuff
        
       - name: Show content from file
-        debug: msg="{{ stuff }}"
+        debug: msg="{{ stuff.stdout }}"
        
       - name: Copy services to file
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
-          line: "{{ stuff }}"
+          line: "{{ stuff.stdout }}"
           insertafter: EOF
         delegate_to: 127.0.0.1
        
