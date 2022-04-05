@@ -4,56 +4,58 @@
 
   tasks:
 
-  - name: Read write text file test
-    block:
+    - name: Read write text file test
+      block:
 
-      - name: Create Directory
-        file:
-          path: /tmp/MyTest
-          state: directory
-        delegate_to: 127.0.0.1
-        run_once: true
-
-      - name: Creating an empty file
-        file:
-          path: "/tmp/MyTest/MyFile.txt"
-          state: touch
-        delegate_to: 127.0.0.1
-        run_once: true
+        - name: Create Directory
+          file:
+            path: /tmp/MyTest
+            state: directory
+          delegate_to: 127.0.0.1
+          run_once: true
+          
+        - name: Creating an empty file
+          file:
+            path: "/tmp/MyTest/MyFile.txt"
+            state: touch
+          delegate_to: 127.0.0.1
+          run_once: true
        
-      - win_shell: Get-Service
-        register: stuff
+        - win_shell: Get-Service
+          register: stuff
        
-      - name: Write debug message
-        debug:
-          msg: |
-            "Host {{ ansible_hostname }}"
-            "{{ stuff.stdout }}"
-            ""
-            ""
+        - name: Write debug message
+          debug:
+            msg: |
+              "Host {{ ansible_hostname }}"
+              "{{ stuff.stdout }}"
+              ""
+              ""
        
-      - name: Copy services to file
-        lineinfile:
-          path: "/tmp/MyTest/MyFile.txt"
-          line: |
-            "Host {{ ansible_hostname }}"
-            "{{ stuff.stdout }}"
-            ""
-            ""
-          insertafter: EOF
-        delegate_to: 127.0.0.1
-       
-    - name: Read file to fact
-      set_fact:
-        file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
-      run_once: true
-      delegate_to: 127.0.0.1
+        - name: Copy services to file
+          lineinfile:
+            path: "/tmp/MyTest/MyFile.txt"
+            line: |
+              "Host {{ ansible_hostname }}"
+              "{{ stuff.stdout }}"
+              ""
+              ""
+            insertafter: EOF
+          delegate_to: 127.0.0.1
+          
+    - name: Read write text file test
+      block:
+        - name: Read file to fact
+          set_fact:
+            file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+          run_once: true
+          delegate_to: 127.0.0.1
         
-    - name: Show content from file
-      debug: msg="The text from file- '{{ file_text }}'"
-      # Only run on the last host
-      when: inventory_hostname != ansible_play_hosts_all[-1]
-      # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
-      run_once: true
+        - name: Show content from file
+          debug: msg="The text from file- '{{ file_text }}'"
+          # Only run on the last host
+          when: inventory_hostname != ansible_play_hosts_all[-1]
+          # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
+          run_once: true
 
     # delegate_to: 127.0.0.1
