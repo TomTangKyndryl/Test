@@ -12,11 +12,13 @@
           path: /tmp/MyTest
           state: directory
         delegate_to: 127.0.0.1
+        run_once: true
 
       - name: Creating an empty file
         file:
           path: "/tmp/MyTest/MyFile.txt"
           state: touch
+        run_once: true
 
       - name: Copy text to file
         copy:
@@ -31,5 +33,6 @@
         debug: msg="The text from file- '{{ file_text }}'"
         when: inventory_hostname != ansible_play_hosts_all[-1]
         # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
+        run_once: true
 
     delegate_to: 127.0.0.1
