@@ -29,8 +29,9 @@
         lineinfile:
           path: "/tmp/MyTest/MyFile.txt"
           line: "This is my text that i copied"
-          create: no
-
+          #create: no
+          insertafter: EOF
+          
       - name: Read file to fact
         set_fact:
           file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
