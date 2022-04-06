@@ -28,7 +28,7 @@
          Write-Host "cleaning up ..."
        }
       register: result
-      when: "'{{ ansible_hostname }}' in '{{ one_server}}'"
+      when: "'{{ ansible_hostname }}' in '{{ one_server }}'"
        
     - name: Write debug message
       debug:
