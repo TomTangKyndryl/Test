@@ -5,7 +5,7 @@
   tasks:
        
     - name: Run shell
-    - win_shell: |
+      win_shell: |
        Try
        {
          # Try something that could cause an error
