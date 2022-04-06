@@ -9,7 +9,7 @@
   tasks:
        
     - name: Run shell
-      hosts: 172.16.25.22
+      #hosts: 172.16.25.22
       win_shell: |
        Try
        {
