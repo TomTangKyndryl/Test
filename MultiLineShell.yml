@@ -32,4 +32,4 @@
        
     - name: Write debug message
       debug:
-        msg: "{{ result.msg.stdout }}"
+        msg: "{{ result }}"
