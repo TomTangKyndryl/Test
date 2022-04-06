@@ -4,25 +4,25 @@
 
   tasks:
        
-      - name: Run shell
-      - win_shell: |
-         Try
-         {
-           # Try something that could cause an error
-           1/0
-         }
-         Catch
-         {
-           # Catch any error
-           Write-Host "An error occurred"
-         }
-         Finally
-         {
-           # [Optional] Run this part always
-           Write-Host "cleaning up ..."
-         }
-        register: result
+    - name: Run shell
+    - win_shell: |
+       Try
+       {
+         # Try something that could cause an error
+         1/0
+       }
+       Catch
+       {
+         # Catch any error
+         Write-Host "An error occurred"
+       }
+       Finally
+       {
+         # [Optional] Run this part always
+         Write-Host "cleaning up ..."
+       }
+      register: result
        
-      - name: Write debug message
-        debug:
-          msg: "{{ result.stdout }}"
+    - name: Write debug message
+      debug:
+        msg: "{{ result.stdout }}"
