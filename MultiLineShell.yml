@@ -2,9 +2,14 @@
 - name: Test multiline shell script!
   hosts: all
 
+  vars:
+    one_server:
+      - 172.16.25.22
+
   tasks:
        
     - name: Run shell
+      hosts: "{{ one_server }}"
       win_shell: |
        Try
        {
