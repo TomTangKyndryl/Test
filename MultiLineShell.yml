@@ -5,7 +5,7 @@
   vars:
     one_server:
       - 172.16.25.22
-      - Win10
+      - Win10Client2
 
   tasks:
        
