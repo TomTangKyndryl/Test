@@ -31,4 +31,6 @@
       when: ansible_hostname in one_server
        
     - name: Write debug message
-      debug: "{{ result.stdout }}"
+      debug:
+        msg: "{{ result.stdout }}"
+      when: ansible_hostname in one_server
