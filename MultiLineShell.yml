@@ -9,7 +9,7 @@
   tasks:
        
     - name: Run shell
-      hosts: "{{ one_server }}"
+      # hosts: "{{ one_server }}"
       win_shell: |
        Try
        {
