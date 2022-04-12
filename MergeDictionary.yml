@@ -34,4 +34,4 @@
     loop: "{{ names }}"
     
   - name: Output
-    debug: msg="Merged dictionary: '{{ dict_combined }}'"
+    debug: msg="Merged dictionary':' '{{ dict_combined }}'"
