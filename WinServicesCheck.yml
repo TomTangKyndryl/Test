@@ -9,7 +9,7 @@
   tasks:
     - name: Set facts
       set_fact:
-        results: []
+        results: {}
   
     - name: Go through each service
       include_tasks: "WinServicesCheck_LoopedTasks.yml"
