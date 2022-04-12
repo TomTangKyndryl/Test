@@ -7,12 +7,13 @@
   
 - name: Add to fact
   set_fact:
-    results: {{ results | default([]) + combine([{ 'service': item, 'status': stuff.stdout_lines[3] }]) }}
+    results: "{{ results combine([{ 'service': item, 'status': stuff.stdout_lines[3] }]) }}"
 
 - name: Print output
   debug: msg={{ stuff }}
 
 
+# | default([])
 
 #        {{ dict_combined | default([])
 #           + [item | combine(age_item)]
