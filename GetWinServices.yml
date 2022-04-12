@@ -2,6 +2,7 @@
 ---
 - name: Get all windows services
   hosts: all
+  gather_facts: true
   
   tasks:
     #- name: collect facts about system services
