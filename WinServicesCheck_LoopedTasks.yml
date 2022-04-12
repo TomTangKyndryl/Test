@@ -7,7 +7,7 @@
   
 - name: Add to fact
   set_fact:
-    results: "{{ results | combine([{ 'service': item, 'status': stuff.stdout_lines[3] }]) }}"
+    results: "{{ results | default([]) + [{ 'service': item, 'status': stuff.stdout_lines[3] }] }}"
 
 - name: Print output
   debug: msg={{ stuff }}
