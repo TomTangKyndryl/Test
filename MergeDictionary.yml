@@ -16,6 +16,7 @@
   tasks:
 
   - name: Start
+    debug: msg="Start dictonary merge playbook"
 
   - name: Combine      
     set_fact:
