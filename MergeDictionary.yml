@@ -1,1 +1,36 @@
+---
+- name: Hello World!
+  hosts: all
+  vars:
+    names:
+      - id: 1
+        name: First name
+      - id: 2
+        name: Second name
+    ages:
+      - id: 1
+        age: 10
+      - id: 2
+        age: 20
 
+  tasks:
+
+  - name: Start
+
+  - name: Combine      
+    set_fact:
+      dict_combined: >-
+        {{ dict_combined | default([])
+           + [item | combine(age_item)]
+        }} 
+    vars:
+      age_item: >-
+        {{ ages
+          | selectattr('id','equalto',item['id'])
+          | list
+          | first
+        }}
+    loop: "{{ names }}"
+    
+  - name: Output
+    debug: msg="I created this debug message '{{ dict_combined }}'"
