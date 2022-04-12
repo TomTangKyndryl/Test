@@ -1,5 +1,5 @@
 ---
-- name: Hello World!
+- name: Merge two lists of dictionaries/objects - By Chris Vickers 
   hosts: all
   vars:
     names:
