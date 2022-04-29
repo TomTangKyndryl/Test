@@ -8,4 +8,4 @@
   tasks:
         
   - name: Hello World! {{ text1 }}
-    shell: echo "{{ ( text1 | regex_search('a', 'AAA') ) }}"
+    shell: echo "{{ text1 | replace('a','A') }}"
