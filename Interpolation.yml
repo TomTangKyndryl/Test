@@ -8,4 +8,4 @@
   tasks:
         
   - name: Hello World! {{ text1 }}
-    shell: "echo ""{{ text1 }}"""
+    shell: "echo \"{{ text1 }}\""
