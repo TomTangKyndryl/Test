@@ -3,9 +3,9 @@
 - name: Interpolation test
   hosts: all
   vars:
-    text1: This is a single line
+    text1: This is a single line "
 
   tasks:
         
   - name: "{{ text1 | regex_replace('\"', '\"\"')  }}"
-    shell: echo "{{ text1 }}"
+    shell: "echo '{{ text1 }}'"
