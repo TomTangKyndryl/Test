@@ -4,7 +4,7 @@
   hosts: all
   vars:
     text1: This is a single line "
-    text2: echo '"'ran'"'
+    text2: echo "ran"
 
   tasks:
         
