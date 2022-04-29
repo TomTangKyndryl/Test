@@ -1,1 +1,11 @@
 
+---
+- name: Interpolation test
+  hosts: all
+  vars:
+    text1: This is a "" single line ""
+
+  tasks:
+        
+  - name: Hello World! {{ text1 }}
+    shell: echo "{{ ( text1 | regex_replace('\"', \"'\") ) }}"
