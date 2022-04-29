@@ -7,5 +7,5 @@
 
   tasks:
         
-  - name: Hello World! {{ text1 }}
-    shell: "echo \"{{ text1 }}\""
+  - name: "{{ text1 | regex_replace('\"', '\"\"')  }}"
+    shell: "echo "{{ text1 }}"
