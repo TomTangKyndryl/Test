@@ -9,7 +9,7 @@
   tasks:
         
   - name: "{{ text1 | regex_replace('a', 'AA')  }}"
-    shell: {{ text2 }}
+    shell: "{{ text2 }}"
         
   - name: "{{ text1 | regex_replace('\"', '\"\"')  }}"
     shell: echo "{{ text1 | regex_replace('\"', '\"\"') }}"
