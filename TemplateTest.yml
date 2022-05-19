@@ -7,6 +7,19 @@
     text3: text 3
 
   tasks:
+    - name: Create Directory
+      file:
+        path: /tmp/MyTest
+        state: directory
+      delegate_to: 127.0.0.1
+      run_once: true
+          
+    - name: Creating an empty file
+      file:
+        path: "/tmp/MyTest/MyFile.txt"
+        state: touch
+      delegate_to: 127.0.0.1
+      run_once: true
 
     - name: Copy services to file
       lineinfile:
@@ -19,6 +32,8 @@
           </tr>    
         insertafter: EOF
       delegate_to: 127.0.0.1
+      
+      
       
   - name: Encription status...
     debug: msg="I created this debug message. '{{ my_variable }}'"
