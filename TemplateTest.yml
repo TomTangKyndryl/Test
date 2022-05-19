@@ -1,17 +1,24 @@
 ---
 - name: Hello World!
   hosts: all
+  vars:
+    text1: text 1
+    text2: text 2
+    text3: text 3
 
   tasks:
 
-  - name: Hello World! {{ my_variable }}
-    shell: echo "Hi! Tower is working! v2 My variable':' '{{ my_variable }}'"
-
-  - name: Creates directory
-    file:
-      path: /tmp/MyTest
-      state: directory
-      
+    - name: Copy services to file
+      lineinfile:
+        path: "/tmp/MyTest/MyFile.txt"
+        line: |
+          <tr>      
+            <td style="background-color: {{ text1 }}">{{ text1 }}</td>    
+            <td>{{ text2 }}</td>
+            <td>{{ text2 }}</td>
+          </tr>    
+        insertafter: EOF
+      delegate_to: 127.0.0.1
       
   - name: Encription status...
     debug: msg="I created this debug message. '{{ my_variable }}'"
