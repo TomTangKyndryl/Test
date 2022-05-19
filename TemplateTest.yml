@@ -33,7 +33,11 @@
         insertafter: EOF
       delegate_to: 127.0.0.1
       
+    - name: Read file to fact
+      set_fact:
+        file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+      run_once: true
+      delegate_to: 127.0.0.1
       
-      
-  - name: Encription status...
-    debug: msg="I created this debug message. '{{ my_variable }}'"
+    - name: Encription status...
+      debug: msg="I created this debug message. '{{ file_text }}'"
