@@ -26,7 +26,7 @@
         path: "/tmp/MyTest/MyFile.txt"
         line: |
           <tr>      
-            <td style="background-color: {{ text1 }}">{{ text1 }}</td>    
+            <td style="background-color: {{ 'red' if text1 == 'text 1' else 'blue' }}">{{ text1 }}</td>    
             <td>{{ text2 }}</td>
             <td>{{ text2 }}</td>
           </tr>    
