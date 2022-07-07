@@ -14,9 +14,18 @@
       encoding: utf-16
       line: This is a utf-16 encoded file
 
-  - name: Read file to fact
-    set_fact:
-      file_text: "{{ lookup('file', 'C:\\temp\\utf16-2.txt') }}"
+  #- name: Read file to fact
+  #  set_fact:
+  #    file_text: "{{ lookup('file', 'C:\\temp\\utf16-2.txt') }}"
+      
+  - name: Read from file
+    win_shell: cat C:\temp\utf16-2.txt
+    register: file_contents
+
+  - name: Tasks
+    debug:
+      msg: "success"
+    when: '"This" in file_contents.stdout'
         
   - name: Show content from file
     debug:
