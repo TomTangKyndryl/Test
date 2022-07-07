@@ -1,5 +1,5 @@
 ---
-- name: Hello World!
+- name: AddLineAndREgistry - TEST
   hosts: all
 
   tasks:
