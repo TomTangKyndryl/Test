@@ -16,7 +16,7 @@
 
   - name: Add line to file test
     win_lineinfile:
-      path: c:\temp\MyFile.txt
+      path: C:\temp\utf16.txt
       line: |
         This is my text
         ""
