@@ -7,17 +7,17 @@
   - name: Hello World! {{ my_variable }}
     win_shell: echo "Hi! '{{ my_variable }}'"
 
-#  - name: Add line to file
-#    lineinfile:
-#      path: C:\temp\MyFile.txt
-#      line: |
-#        This is my text
-#        ""
-#      insertafter: EOF
+  - name: Add line to file
+    lineinfile:
+      path: C:\temp\MyFile.txt
+      line: |
+        This is my text
+        ""
+      insertafter: EOF
         
-#  - name: Add or update registry path MyCompany, with dword entry 'hello', and containing 0xff2500ae as the hex value
-#    win_regedit:
-#      path: HKCU:\Software\MyCompany
-#      name: hello
-#      data: 0xff2500ae
-#      type: dword
+  - name: Add or update registry path MyCompany, with dword entry 'hello', and containing 0xff2500ae as the hex value
+    win_regedit:
+      path: HKCU:\Software\MyCompany
+      name: hello
+      data: 0xff2500ae
+      type: dword
