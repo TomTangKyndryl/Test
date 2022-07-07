@@ -22,6 +22,7 @@
         ""
       insertafter: EOF
         
+  # HKCU means HKEY_CURRENT_USER
   - name: Add or update registry path MyCompany, with dword entry 'hello', and containing 0xff2500ae as the hex value
     win_regedit:
       path: HKCU:\Software\MyCompany
