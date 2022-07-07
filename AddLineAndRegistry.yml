@@ -5,7 +5,7 @@
   tasks:
 
   - name: Hello World! {{ my_variable }}
-    win_shell: echo "Hi!"
+    win_shell: echo "Hi! '{{ my_variable }}'"
 
 #  - name: Add line to file
 #    lineinfile:
