@@ -9,7 +9,7 @@
 
   - name: Create file if it doesn't exist with a specific encoding
     win_lineinfile:
-      path: C:\temp\utf16.txt
+      path: C:\temp\utf16-2.txt
       create: yes
       encoding: utf-16
       line: This is a utf-16 encoded file
