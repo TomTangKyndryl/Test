@@ -14,6 +14,15 @@
       encoding: utf-16
       line: This is a utf-16 encoded file
 
+    - name: Read file to fact
+      set_fact:
+        file_text: "{{ lookup('file', 'C:\temp\utf16-2.txt') }}"
+        
+    - name: Show content from file
+      debug:
+        msg: |
+          "{{ file_text }}"
+
   - name: Find files in path
     win_find:
       paths: C:\temp
