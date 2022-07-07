@@ -16,7 +16,7 @@
 
   - name: Read file to fact
     set_fact:
-      file_text: "{{ lookup('file', 'C:\temp\utf16-2.txt') }}"
+      file_text: "{{ lookup('file', 'C:\\temp\\utf16-2.txt') }}"
         
   - name: Show content from file
     debug:
