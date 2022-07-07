@@ -9,11 +9,9 @@
 
   - name: Add line to file
     lineinfile:
-        path: "/tmp/MyTest/MyFile.txt"
+        path: "c:/temp/MyFile.txt"
         line: |
-            "XXX Host {{ ansible_hostname }}"
-            "{{ stuff.stdout }}"
-            ""
+            This is my text
             ""
         insertafter: EOF
         
@@ -23,14 +21,3 @@
         name: hello
         data: 0xff2500ae
         type: dword
-        
-# delegate_to: 127.0.0.1
-
-#  - name: Creates directory
-#    file:
-#      path: /tmp/MyTest
-#      state: directory
-      
-      
-#  - name: Encription status...
-#    debug: msg="I created this debug message '{{ my_variable }}'"
