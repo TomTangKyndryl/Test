@@ -4,8 +4,8 @@
 
   tasks:
 
-  #- name: Hello World! {{ my_variable }}
-  #  shell: echo "Hi! Tower is working! v2 My variable {{ my_variable }}"
+  - name: Hello World! {{ my_variable }}
+    shell: echo "Hi! Tower is working! v2 My variable '{{ my_variable }}'"
 
   - name: Add line to file
     lineinfile:
