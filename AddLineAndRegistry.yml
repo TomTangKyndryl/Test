@@ -14,6 +14,10 @@
       encoding: utf-16
       line: This is a utf-16 encoded file
 
+  - name: Find files in path
+    win_find:
+      paths: C:\temp
+ 
   - name: Add line to file test
     win_lineinfile:
       path: C:\temp\MyFile2.txt
