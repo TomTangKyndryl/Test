@@ -27,10 +27,10 @@
       msg: "success"
     when: '"This" in file_contents.stdout'
         
-  - name: Show content from file
-    debug:
-      msg: |
-        "{{ file_text }}"
+  #- name: Show content from file
+  #  debug:
+  #    msg: |
+  #      "{{ file_text }}"
 
   - name: Find files in path
     win_find:
