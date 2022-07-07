@@ -9,7 +9,7 @@
 
   - name: Add line to file
     lineinfile:
-      path: "C:\temp\MyFile.txt"
+      path: C:\temp\MyFile.txt
       line: |
         This is my text
         ""
