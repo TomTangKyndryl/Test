@@ -9,15 +9,15 @@
 
   - name: Add line to file
     lineinfile:
-        path: "c:/temp/MyFile.txt"
-        line: |
-            This is my text
-            ""
-        insertafter: EOF
+      path: "c:/temp/MyFile.txt"
+      line: |
+        This is my text
+        ""
+    insertafter: EOF
         
   - name: Add or update registry path MyCompany, with dword entry 'hello', and containing 0xff2500ae as the hex value
     win_regedit:
-        path: HKCU:\Software\MyCompany
-        name: hello
-        data: 0xff2500ae
-        type: dword
+      path: HKCU:\Software\MyCompany
+      name: hello
+      data: 0xff2500ae
+      type: dword
