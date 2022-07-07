@@ -7,7 +7,7 @@
   - name: Hello World! {{ my_variable }}
     win_shell: echo "Hi! '{{ my_variable }}'"
 
-  - name: Add line to file
+  - name: Add line to file test
     win_lineinfile:
       path: "C:\temp\MyFile.txt"
       line: |
