@@ -18,6 +18,7 @@
       dest: "{{ item.path }}-backup"
       follow: no
       backup: yes
+      remote_src: yes
     loop: "{{ folder_output.files }}"
     
     #Loop through list of files and do everthing that needs to be done
