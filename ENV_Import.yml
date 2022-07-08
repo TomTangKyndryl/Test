@@ -10,10 +10,11 @@
   shell: "cat {{ item.path }}"
   register: text_from_file
     
-- name: Write text from file
+- name: Run this when
   debug:
-    msg: "{{ text_from_file }}"
-    
+    msg: "The value existed in the file"
+  when: '"THIS IS MY NEW LINE!" in text_from_file.stdout'
+
 - name: Add new line to env
   lineinfile:
     path: "{{ item.path }}"
