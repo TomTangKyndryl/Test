@@ -5,12 +5,12 @@
     
 - name: Write message when the value exists
   debug:
-    msg: "The value existed in the file"
-  when: '"THIS IS MY NEW LINE!" in text_from_file.stdout'
+    msg: "KDE_TRANSPORT=IP.PIPE PORT:1918 use:y IP.SPIPE PORT:3660 use:y IP use:n SNA use:n http_server:n"
+  when: '"KDE_TRANSPORT=IP.PIPE PORT:1918 use:y IP.SPIPE PORT:3660 use:y IP use:n SNA use:n http_server:n" in text_from_file.stdout'
 
 - name: Add new line to env
   win_lineinfile:
     path: "{{ item.path }}"
-    line: THIS IS MY NEW LINE!
+    line: KDE_TRANSPORT=IP.PIPE PORT:1918 use:y IP.SPIPE PORT:3660 use:y IP use:n SNA use:n http_server:n
     insertafter: EOF
-  when: '"THIS IS MY NEW LINE!" not in text_from_file.stdout'
+  when: '"KDE_TRANSPORT=IP.PIPE PORT:1918 use:y IP.SPIPE PORT:3660 use:y IP use:n SNA use:n http_server:n" not in text_from_file.stdout'
