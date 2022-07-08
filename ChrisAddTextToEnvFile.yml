@@ -12,12 +12,17 @@
     register: folder_output
     
   # Backup should be created
-  - name: Loop the list of file and make a copy
+  - name: Loop the list of files and make a copy
     copy:
       src: "{{ item.path }}"
       dest: "{{ item.path }}-backup"
       follow: no
+      backup: yes
     loop: "{{ folder_output.files }}"
+    
+    #Loop through list of files and do everthing that needs to be done
+   
+
     
     
     
