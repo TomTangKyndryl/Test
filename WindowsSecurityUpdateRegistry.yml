@@ -7,7 +7,7 @@
   # HKCU means HKEY_CURRENT_USER
   - name: Update registry value
     win_regedit:
-      path: HKLM:SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
       name: UserAuthentication
       data: 1
       type: dword
