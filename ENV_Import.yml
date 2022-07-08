@@ -6,9 +6,13 @@
   debug:
     msg: "{{ item.path }}"
     
-- name: Get text from file
-  set_fact:
-    text_from_file: "{{ lookup('file', item.path ) }}"
+- name: read the values.txt
+  shell: "cat {{ item.path }}"
+  register: text_from_file
+    
+#- name: Get text from file
+#  set_fact:
+#    text_from_file: "{{ lookup('file', item.path ) }}"
     
 - name: Write text from file
   debug:
