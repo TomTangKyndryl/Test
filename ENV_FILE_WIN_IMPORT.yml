@@ -1,0 +1,16 @@
+---    
+- name: "Reading the values in {{ item.path }}"
+  shell: "cat {{ item.path }}"
+  register: text_from_file
+    
+- name: Write message when the value exists
+  debug:
+    msg: "The value existed in the file"
+  when: '"THIS IS MY NEW LINE!" in text_from_file.stdout'
+
+- name: Add new line to env
+  lineinfile:
+    path: "{{ item.path }}"
+    line: THIS IS MY NEW LINE!
+    insertafter: EOF
+  when: '"THIS IS MY NEW LINE!" not in text_from_file.stdout'
