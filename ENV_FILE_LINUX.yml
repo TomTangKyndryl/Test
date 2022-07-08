@@ -6,8 +6,8 @@
   
   - name: Return a list of all the files in the folder below end 'env'
     find:
-      # paths: /opt/IBM/ITM/config/.ConfigData
-      paths: /testenv
+      paths: /opt/IBM/ITM/config/.ConfigData
+      # paths: /testenv
       patterns: '*env'
     register: folder_output
     
@@ -15,7 +15,7 @@
   - name: Loop the list of files and make a copy
     copy:
       src: "{{ item.path }}"
-      dest: "{{ item.path }}-backup-{{ backup_id }}"
+      dest: "{{ item.path }}.{{ backup_id }}backup"
       follow: no
       backup: yes
       remote_src: yes
