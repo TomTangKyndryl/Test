@@ -15,7 +15,7 @@
   - name: Loop the list of files and make a copy
     copy:
       src: "{{ item.path }}"
-      dest: "{{ item.path }}-backup"
+      dest: "{{ item.path }}-backup-{{ backup_id }}"
       follow: no
       backup: yes
       remote_src: yes
