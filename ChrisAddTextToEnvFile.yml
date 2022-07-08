@@ -7,7 +7,7 @@
   - name: Return a list of all the files in the folder below end 'env'
     find:
       # paths: /opt/IBM/ITM/config/.ConfigData
-      paths: /tmp
+      paths: /testenv
       patterns: '*env'
     register: folder_output
     
