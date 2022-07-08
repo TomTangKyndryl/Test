@@ -5,3 +5,11 @@
 - name: Write debug message
   debug:
     msg: "{{ item.path }}"
+    
+- name: Get text from file
+  set_fact:
+    text_from_file: {{ lookup('file', item.path ) }}
+    
+- name: Write text from file
+  debug:
+    msg: "{{ text_from_file }}"
