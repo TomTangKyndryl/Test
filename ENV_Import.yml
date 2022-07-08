@@ -1,11 +1,4 @@
----
-- name: Hello World!
-  shell: echo "I have tried to import this task"
-  
-- name: Write debug message
-  debug:
-    msg: "{{ item.path }}"
-    
+---    
 - name: read the values.txt
   shell: "cat {{ item.path }}"
   register: text_from_file
