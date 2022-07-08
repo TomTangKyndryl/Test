@@ -1,6 +1,6 @@
 ---    
 - name: "Reading the values in {{ item.path }}"
-  shell: "cat {{ item.path }}"
+  win_shell: "cat {{ item.path }}"
   register: text_from_file
     
 - name: Write message when the value exists
@@ -9,7 +9,7 @@
   when: '"THIS IS MY NEW LINE!" in text_from_file.stdout'
 
 - name: Add new line to env
-  lineinfile:
+  win_lineinfile:
     path: "{{ item.path }}"
     line: THIS IS MY NEW LINE!
     insertafter: EOF
