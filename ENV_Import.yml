@@ -8,7 +8,7 @@
     
 - name: Get text from file
   set_fact:
-    text_from_file: {{ lookup('file', item.path ) }}
+    text_from_file: "{{ lookup('file', item.path ) }}"
     
 - name: Write text from file
   debug:
