@@ -9,3 +9,14 @@
       # paths: /opt/IBM/ITM/config/.ConfigData
       paths: /tmp
       patterns: '*env'
+    register: folder_output
+    
+  # Backup should be created
+  - name: Loop the list of file and make a copy
+    copy:
+      src: "{{ item.path }}"
+      dest: "{{ item.path }}-backup"
+    loop: "{{ folder_output.files }}"
+    
+    
+    
