@@ -16,6 +16,7 @@
     copy:
       src: "{{ item.path }}"
       dest: "{{ item.path }}-backup"
+      follow: no
     loop: "{{ folder_output.files }}"
     
     
