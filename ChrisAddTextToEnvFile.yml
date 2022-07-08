@@ -1,1 +1,11 @@
 ---
+- name: Windows Update Registry
+  hosts: all
+  gather_facts: yes
+  tasks:
+  
+  - name: Return a list of all the files in the folder below end 'env'
+    find:
+      # paths: /opt/IBM/ITM/config/.ConfigData
+      paths: /tmp
+      patterns: '*env'
