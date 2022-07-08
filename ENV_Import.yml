@@ -1,3 +1,7 @@
 ---
 - name: Hello World!
   shell: echo "I have tried to import this task"
+  
+- name: Write debug message
+  debug:
+    msg: "{{ item.path }}"
