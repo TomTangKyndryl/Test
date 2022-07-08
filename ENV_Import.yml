@@ -14,8 +14,9 @@
   debug:
     msg: "{{ text_from_file }}"
     
-- name: Ensure SELinux is set to enforcing mode
+- name: Add new line to env
   lineinfile:
     path: "{{ item.path }}"
     line: THIS IS MY NEW LINE!
     insertafter: EOF
+  when: '"THIS IS MY NEW LINE!" not in text_from_file.stdout'
