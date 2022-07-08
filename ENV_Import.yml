@@ -1,5 +1,5 @@
 ---    
-- name: read the values.txt
+- name: "Read the values is {{ item.path }}"
   shell: "cat {{ item.path }}"
   register: text_from_file
     
