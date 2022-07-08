@@ -1,0 +1,27 @@
+---
+- name: Windows Update File
+  hosts: all
+  gather_facts: yes
+  tasks:
+  
+  - name: Return a list of all the files in the folder below end 'env'
+    win_find:
+      # paths: /opt/IBM/ITM/config/.ConfigData
+      paths: C:\Temp\
+      patterns: '*env'
+    register: folder_output
+    
+  # Backup should be created
+  - name: Loop the list of files and make a copy
+    win_copy:
+      src: "{{ item.path }}"
+      dest: "{{ item.path }}-backup-{{ backup_id }}"
+      follow: no
+      backup: yes
+      remote_src: yes
+    loop: "{{ folder_output.files }}"
+    
+  # Loop through list of files and do everthing that needs to be done
+  - name: Loop through files on machine
+    include_tasks: ENV_FILE_WIN_IMPORT.yml
+    loop: "{{ folder_output.files }}"
