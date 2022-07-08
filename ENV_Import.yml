@@ -1,9 +1,9 @@
 ---    
-- name: "Read the values is {{ item.path }}"
+- name: "Reading the values in {{ item.path }}"
   shell: "cat {{ item.path }}"
   register: text_from_file
     
-- name: Run this when
+- name: Write message when the value exists
   debug:
     msg: "The value existed in the file"
   when: '"THIS IS MY NEW LINE!" in text_from_file.stdout'
