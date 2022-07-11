@@ -7,7 +7,9 @@
   - name: Return a list of all the files in the folder below end 'env'
     win_find:
       paths: C:\IBM\ITM\TMAITM6_x64\
-      patterns: '*.ini'
+      patterns:
+      - 'C:\IBM\ITM\TMAITM6_x64\kntcma.ini'
+      - 'C:\IBM\ITM\TMAITM6_x64\k06cma.ini'
     register: folder_output
     
   # Backup should be created
