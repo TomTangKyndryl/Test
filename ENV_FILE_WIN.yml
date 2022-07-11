@@ -31,6 +31,6 @@
     win_service:
       #display_name: Xbox Live Auth Manager
       name: XblAuthManager
-      # state: restarted
-      state: started
+      state: restarted
+      # state: started
       # state: paused
