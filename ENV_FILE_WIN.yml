@@ -27,13 +27,13 @@
     include_tasks: ENV_FILE_WIN_IMPORT.yml
     loop: "{{ folder_output.files }}"
 
-  - name: Restart a service
+  - name: Restart Xbox Live
     win_service:
       #display_name: Xbox Live Auth Manager
       name: XblAuthManager
       state: restarted
 
-  - name: Restart a service
+  - name: Restart Xbox Live Game Save
     win_service:
       name: XblGameSave
       state: restarted
