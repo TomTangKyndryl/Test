@@ -8,8 +8,8 @@
     win_find:
       paths: C:\IBM\ITM\TMAITM6_x64\
       patterns:
-      - 'C:\IBM\ITM\TMAITM6_x64\kntcma.ini'
-      - 'C:\IBM\ITM\TMAITM6_x64\k06cma.ini'
+      - kntcma.ini
+      - k06cma.ini
     register: folder_output
     
   # Backup should be created
