@@ -29,8 +29,8 @@
 
   - name: Restart a service
     win_service:
-      display_name: Xbox Live Auth Manager
-      #name: spooler
+      #display_name: Xbox Live Auth Manager
+      name: XblAuthManager
       # state: restarted
       state: started
       # state: paused
