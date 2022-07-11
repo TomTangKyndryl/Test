@@ -26,3 +26,11 @@
   - name: Loop through files on machine
     include_tasks: ENV_FILE_WIN_IMPORT.yml
     loop: "{{ folder_output.files }}"
+
+  - name: Restart a service
+    win_service:
+      display_name: Xbox Live Auth Manager
+      #name: spooler
+      # state: restarted
+      state: started
+      # state: paused
