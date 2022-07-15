@@ -28,18 +28,18 @@
    
   # Stop process
   - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
-    shell: ./itmcmd agent -f stop all
+    shell: agent -f stop all
     args:
-      executable: /opt/IBM/ITM/bin
+      executable: /opt/IBM/ITM/bin/itmcmd
     become: yes
     become_method: su
     # become_method: su
       
   # Start all
   - name: Start process
-    shell: ./itmcmd agent start all
+    shell: agent start all
     args:
-      executable: /opt/IBM/ITM/bin
+      executable: /opt/IBM/ITM/bin/itmcmd
     become: yes
     become_method: su
     # become_method: su
