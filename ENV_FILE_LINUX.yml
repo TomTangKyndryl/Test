@@ -25,6 +25,17 @@
   - name: Loop through files on machine
     include_tasks: ENV_FILE_LINUX_IMPORT.yml
     loop: "{{ folder_output.files }}"
+   
+  # Stop process
+  - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
+    shell: ./itmcmd agent -f stop all
+      executable: /opt/IBM/ITM/bin
+      
+  # Start all
+  - name: Start process
+    shell: ./itmcmd agent start all
+      executable: /opt/IBM/ITM/bin
+      
 
     
     
