@@ -31,12 +31,16 @@
     shell: ./itmcmd agent -f stop all
     args:
       executable: /opt/IBM/ITM/bin
+    become: yes
+    # become_method: su
       
   # Start all
   - name: Start process
     shell: ./itmcmd agent start all
     args:
       executable: /opt/IBM/ITM/bin
+    become: yes
+    # become_method: su
       
 
     
