@@ -32,7 +32,8 @@
     args:
       executable: /opt/IBM/ITM/bin/itmcmd
     become: yes
-    become_method: su
+    become_user: root
+    # become_method: su
     # become_method: su
       
   # Start all
@@ -41,7 +42,8 @@
     args:
       executable: /opt/IBM/ITM/bin/itmcmd
     become: yes
-    become_method: su
+    become_user: root
+    # become_method: su
     # become_method: su
       
 
