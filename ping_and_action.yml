@@ -1,1 +1,13 @@
 ---
+- name: Text test playbook
+  hosts: all
+  vars:
+    text1: This is a single line
+
+  tasks:
+
+  - name: Hello World! {{ text1 }}
+    shell: echo "Text1"
+    
+  - name: Hello World! {{ text2 }}
+    shell: echo "Text2"
