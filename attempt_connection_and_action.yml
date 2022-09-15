@@ -1,0 +1,88 @@
+---
+# Set default response to be returned if nothing else works
+- name: "initialize tower workflow variables"
+  set_fact:
+    exec_success: false
+    exec_changed: false
+    exec_rc: 1
+    exec_message: "Execution failed."
+
+# Set default timeout value for connectivity check
+- set_fact:
+    wait_time: 600
+  when: wait_time is undefined
+
+# Check connectivity to the host
+- name: Check connectivity to the target host
+  wait_for_connection:
+    sleep: "{{ time_wait }}"
+    timeout: "{{ (time_wait | int) * (loop_limit | int) }}"
+  register: target_connection
+  ignore_errors: true
+
+# Give debug message of timeout
+- name: The number of seconds elapsed whle waiting for connection
+  debug: var=target_connection['elapsed']
+  when: target_connection['elapsed'] is defined
+
+# Catch errors if the connectivity check fails
+- name: Block of diagnose - invalid time_wait/loop_limit
+  block:
+    - name: "set fact - invalid time_wait/loop_limit"
+      set_fact:
+        exec_success: false
+        exec_changed: false
+        exec_rc: 3000
+        exec_message: >
+          Failed to check connectivity to the target.
+          Please insure time_wait and loop_limit values
+          are configured correctly.
+  when: target_connection['elapsed'] is undefined
+
+# No connection to server. Return code 3001
+- name: Block of diagnose - failed to connect
+  block:
+    - name: "set fact - connection failed"
+      set_fact:
+        exec_success: false
+        exec_changed: false
+        exec_rc: 3001
+        exec_message: |
+          - "Failed to connect to the target
+            within {{ target_connection['elapsed'] }} seconds."
+          - "{{ target_connection['msg'] }}"
+  when: target_connection is failed and target_connection['elapsed'] is defined
+
+# If connection is successful, run this code
+- name: Connected to the target
+  block:
+    # Run shell script to get value
+    - name: Run command to check agent up
+      shell:
+        cmd: ./emctl status agent
+        # home path can take from /etc/oragchomelist 
+        # /opt/oracle/agent/agent_inst
+        chdir: somedir/
+      register: shell_output
+
+    # If agent heart beat status IS OK, return these closure codes
+    - name: "initialize tower workflow variables"
+      set_fact:
+        exec_success: false
+        exec_changed: false
+        exec_rc: 1
+        exec_message: "Execution failed."
+      when: # If shell command failed, run this
+      
+    # If agent heart beat status IS NOT OK, return these closure codes
+    - name: "initialize tower workflow variables"
+      set_fact:
+        exec_success: false
+        exec_changed: false
+        exec_rc: 1
+        exec_message: "Execution failed."
+      when:   
+
+  when: target_connection is succeeded
+ 
+    
