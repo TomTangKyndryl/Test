@@ -83,8 +83,8 @@
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
-        - shell_output.stdout[10] | default('') is not search('Ok')
-        # - "Ok" not in shell_output.stdout[10] | default('')
+        # - shell_output.stdout[10] | default('') is not search('Ok')
+        - not "Ok" in shell_output.stdout[10] | default('')
   when: target_connection is succeeded
 
 # Return debug information to assist with fault finding
