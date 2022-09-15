@@ -41,10 +41,11 @@
     # Run shell script to get value
     - name: Run command to check agent up
       shell:
-        cmd: ./emctl status agent
+        cmd: ping -c 10 8.8.8.8
+        # cmd: ./emctl status agent
         # home path can take from /etc/oragchomelist 
         # /opt/oracle/agent/agent_inst
-        chdir: somedir/
+        chdir: /tmp/
       register: shell_output
 
     # If agent heart beat status IS OK, return these closure codes
