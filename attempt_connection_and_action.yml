@@ -67,7 +67,7 @@
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
         - shell_output.stdout[10] | default('') is search('Ok')
-        # - '"Heartbeat Status" in shell_output.stdout[10] | default("")'
+        # - '"Heartbeat Status" in shell_output.stdout[20] | default("")'
       
     # If agent heart beat status IS NOT OK, return these closure codes
     - name: "initialize tower workflow variables"
@@ -84,7 +84,7 @@
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
         # - shell_output.stdout[10] | default('') is not search('Ok')
-        - not "Ok" in shell_output.stdout[10] | default('')
+        - not "Ok" in shell_output.stdout[20] | default('')
   when: target_connection is succeeded
 
 # Return debug information to assist with fault finding
