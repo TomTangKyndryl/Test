@@ -62,7 +62,7 @@
           "The agent heartbeat was successful. No action to be carried out. Ticket closed automatically"
           ""
           "Agent status:"
-          "{{ shelloutput.stdout }}"
+          "{{ shell_output.stdout }}"
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
@@ -79,7 +79,7 @@
           "The agent heartbeat was unsuccessful. Human action is required to resolve this issue"
           ""
           "Agent Status:"
-          "'{{ shelloutput.stdout }}'"
+          "'{{ shell_output.stdout }}'"
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
