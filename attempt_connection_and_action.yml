@@ -66,8 +66,8 @@
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
-        - "Ok" in shell_output.stdout[10] | default('')
-        - "Heartbeat Status" in shell_output.stdout[10] | default('')
+        - '"Ok" in shell_output.stdout[10] | default("")'
+        - '"Heartbeat Status" in shell_output.stdout[10] | default("")'
       
     # If agent heart beat status IS NOT OK, return these closure codes
     - name: "initialize tower workflow variables"
