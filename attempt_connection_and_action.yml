@@ -48,6 +48,10 @@
         chdir: /tmp/
       register: shell_output
 
+    # Output response from shell above
+    - debug:
+      msg: "{{ shell_output }}"
+
     # If agent heart beat status IS OK, return these closure codes
     - name: "initialize tower workflow variables"
       set_fact:
