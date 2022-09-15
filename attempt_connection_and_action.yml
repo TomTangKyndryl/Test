@@ -66,7 +66,7 @@
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
-        - shell_output.stdout[10] | default('') is search('Ok')
+        - shell_output.stdout[20] | default('') is search('8.8.8.8')
         # - '"Heartbeat Status" in shell_output.stdout[20] | default("")'
       
     # If agent heart beat status IS NOT OK, return these closure codes
@@ -84,7 +84,7 @@
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
         # - shell_output.stdout[10] | default('') is not search('Ok')
-        - not "Ok" in shell_output.stdout[20] | default('')
+        - not "8.8.8.8" in shell_output.stdout[20] | default('')
   when: target_connection is succeeded
 
 # Return debug information to assist with fault finding
