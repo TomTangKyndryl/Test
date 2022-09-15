@@ -1,6 +1,6 @@
 ---
 # Set default response to be returned if nothing else works
-- name: "initialize tower workflow variables"
+- name: "Initialize tower workflow variables"
   set_fact:
     exec_success: false
     exec_changed: false
@@ -15,29 +15,10 @@
 # Check connectivity to the host
 - name: Check connectivity to the target host
   wait_for_connection:
-    sleep: "{{ time_wait }}"
-    timeout: "{{ (time_wait | int) * (loop_limit | int) }}"
+    sleep: "{{ (time_wait | int) }}"
+    timeout: "{{ (time_wait | int) }}"
   register: target_connection
   ignore_errors: true
-
-# Give debug message of timeout
-- name: The number of seconds elapsed whle waiting for connection
-  debug: var=target_connection['elapsed']
-  when: target_connection['elapsed'] is defined
-
-# Catch errors if the connectivity check fails
-- name: Block of diagnose - invalid time_wait/loop_limit
-  block:
-    - name: "set fact - invalid time_wait/loop_limit"
-      set_fact:
-        exec_success: false
-        exec_changed: false
-        exec_rc: 3000
-        exec_message: >
-          Failed to check connectivity to the target.
-          Please insure time_wait and loop_limit values
-          are configured correctly.
-  when: target_connection['elapsed'] is undefined
 
 # No connection to server. Return code 3001
 - name: Block of diagnose - failed to connect
@@ -56,6 +37,7 @@
 # If connection is successful, run this code
 - name: Connected to the target
   block:
+  
     # Run shell script to get value
     - name: Run command to check agent up
       shell:
@@ -71,8 +53,16 @@
         exec_success: false
         exec_changed: false
         exec_rc: 1
-        exec_message: "Execution failed."
-      when: # If shell command failed, run this
+        exec_message: |
+          "The agent heartbeat was successful. No action to be carried out. Ticket closed automatically"
+          ""
+          "Agent status:"
+          "{{ shelloutput.stdout }}"
+          ""
+          "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
+      when:
+        - "Ok" in shell_output.stdout[10] | default('')
+        - "Heartbeat Status" in shell_output.stdout[10] | default('')
       
     # If agent heart beat status IS NOT OK, return these closure codes
     - name: "initialize tower workflow variables"
@@ -80,9 +70,28 @@
         exec_success: false
         exec_changed: false
         exec_rc: 1
-        exec_message: "Execution failed."
-      when:   
-
+        exec_message: |
+          "The agent heartbeat was unsuccessful. Human action is required to resolve this issue"
+          ""
+          "Agent Status:"
+          "'{{ shelloutput.stdout }}'"
+          ""
+          "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
+      when:
+        - "Ok" not in shell_output.stdout[10] | default('')
   when: target_connection is succeeded
- 
+
+# Return debug information to assist with fault finding
+- debug:
+  msg: |
+    Return codes
+    exec_success: '{{ exec_success }}'
+    exec_changed: '{{ exec_changed }}'
+    exec_rc: '{{ exec_rc }}'
+    exec_message: '{{ exec_message }}'"
+    
+    Agent Status (Will be blank if not run):
+    '{{ shelloutput.stdout | default('') }}'
+    
+    Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'
     
