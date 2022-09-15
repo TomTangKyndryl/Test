@@ -43,14 +43,9 @@
       shell:
         cmd: ping -c 10 8.8.8.8
         # cmd: ./emctl status agent
-        # home path can take from /etc/oragchomelist 
-        # /opt/oracle/agent/agent_inst
+        # /opt/oracle/agent/agent_inst/bin
         chdir: /tmp/
       register: shell_output
-
-    # Output response from shell above
-    - debug:
-        msg: "{{ shell_output }}"
 
     # If agent heart beat status IS OK, return these closure codes
     - name: "initialize tower workflow variables"
@@ -66,8 +61,8 @@
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
-        - shell_output.stdout[20] | default('') is search('8.8.8.8')
-        # - '"Heartbeat Status" in shell_output.stdout[20] | default("")'
+        - shell_output.stdout[20] | default('') is search('Ok')
+        - shell_output.stdout[20] | default('') is search('Heartbeat Status')
       
     # If agent heart beat status IS NOT OK, return these closure codes
     - name: "initialize tower workflow variables"
@@ -83,8 +78,8 @@
           ""
           "Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'"
       when:
-        # - shell_output.stdout[10] | default('') is not search('Ok')
-        - not "8.8.8.8" in shell_output.stdout[20] | default('')
+        - not shell_output.stdout[20] | default('') is search('Ok')
+        - not shell_output.stdout[20] | default('') is search('Heartbeat Status')
   when: target_connection is succeeded
 
 # Return debug information to assist with fault finding
