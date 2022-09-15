@@ -97,7 +97,7 @@
       exec_message: '{{ exec_message }}'"
     
       Agent Status (Will be blank if not run):
-      '{{ shelloutput.stdout | default('') }}'
+      '{{ shell_output.stdout | default('') }}'
       
       Elapsed time from connection: '{{ target_connection['elapsed'] | default('') }}'
     
