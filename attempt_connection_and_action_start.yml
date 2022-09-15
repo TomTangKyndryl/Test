@@ -7,6 +7,6 @@
     
   tasks:
 
-    - name: "WAS Status Windows Handler"
-      include_tasks: windows.yml
-      when: ansible_facts['os_family'] == "Windows"
+    - name: "Linux Agent checker"
+      include_tasks: attempt_connection_and_action.yml
+      when: ansible_facts['os_family'] != "Windows"
