@@ -9,8 +9,8 @@
 
 # Set default timeout value for connectivity check
 - set_fact:
-    wait_time: 600
-  when: wait_time is undefined
+    time_wait: 600
+  when: time_wait is undefined
 
 # Check connectivity to the host
 - name: Check connectivity to the target host
