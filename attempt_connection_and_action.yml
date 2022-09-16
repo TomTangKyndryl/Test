@@ -20,14 +20,14 @@
   register: target_connection
   ignore_errors: true
 
-# No connection to server. Return code 3001
+# No connection to server. Return code 105 (connection failed)
 - name: Block of diagnose - failed to connect
   block:
-    - name: "set fact - connection failed"
+    - name: "Connection Failed - Set return codes"
       set_fact:
         exec_success: false
         exec_changed: false
-        exec_rc: 3001
+        exec_rc: 105
         exec_message: |
           - "Failed to connect to the target
             within {{ target_connection['elapsed'] }} seconds."
@@ -47,12 +47,13 @@
         chdir: /tmp/
       register: shell_output
 
-    # If agent heart beat status IS OK, return these closure codes
-    - name: "initialize tower workflow variables"
+    # If agent heart beat status IS OK. Return code 0 (Remediation with validation closure)
+    # Ticket will be closed automatically
+    - name: "Set variables: Agent is running successfully"
       set_fact:
         exec_success: false
         exec_changed: false
-        exec_rc: 1
+        exec_rc: 0
         exec_message: |
           "The agent heartbeat was successful. No action to be carried out. Ticket closed automatically"
           ""
@@ -64,12 +65,13 @@
         - shell_output.stdout[20] | default('') is search('Ok')
         - shell_output.stdout[20] | default('') is search('Heartbeat Status')
       
-    # If agent heart beat status IS NOT OK, return these closure codes
-    - name: "initialize tower workflow variables"
+    # If agent heart beat status IS NOT OK. Return codes 3001 (Diagnosis when Remediation Failed)
+    # Ticket will be passed to human queue for resolution
+    - name: "Set variables: Agent is not running successfully. Escalate to human"
       set_fact:
-        exec_success: false
+        exec_success: true
         exec_changed: false
-        exec_rc: 1
+        exec_rc: 3001
         exec_message: |
           "The agent heartbeat was unsuccessful. Human action is required to resolve this issue"
           ""
