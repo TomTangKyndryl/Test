@@ -1,0 +1,43 @@
+---
+- name: Hello World!
+  hosts: all
+  vars:
+    text1: text 1
+    text2: text 2
+    text3: text 3
+
+  tasks:
+    - name: Create Directory
+      file:
+        path: /tmp/MyTest
+        state: directory
+      delegate_to: 127.0.0.1
+      run_once: true
+          
+    - name: Creating an empty file
+      file:
+        path: "/tmp/MyTest/MyFile.txt"
+        state: touch
+      delegate_to: 127.0.0.1
+      run_once: true
+
+    - name: Copy services to file
+      lineinfile:
+        path: "/tmp/MyTest/MyFile.txt"
+        line: |
+          <tr>      
+            <td style="background-color: {{ 'red' if text1 == 'text 1' else 'blue' }}">{{ text1 }}</td>    
+            <td>{{ text2 }}</td>
+            <td>{{ text2 }}</td>
+          </tr>    
+        insertafter: EOF
+      delegate_to: 127.0.0.1
+      
+    - name: Read file to fact
+      set_fact:
+        file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+      run_once: true
+      delegate_to: 127.0.0.1
+      
+    - name: Encription status...
+      debug: msg="I created this debug message. '{{ file_text }}'"

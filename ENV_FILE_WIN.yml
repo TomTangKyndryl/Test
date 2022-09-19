@@ -1,0 +1,39 @@
+---
+- name: Windows Update File
+  hosts: all
+  gather_facts: yes
+  tasks:
+  
+  - name: Return a list of all the files in the folder below end 'env'
+    win_find:
+      paths: C:\IBM\ITM\TMAITM6_x64\
+      patterns:
+      - kntcma.ini
+      - k06cma.ini
+    register: folder_output
+    
+  # Backup should be created
+  - name: Loop the list of files and make a copy
+    win_copy:
+      src: "{{ item.path }}"
+      dest: "{{ item.path }}.{{ backup_id }}backup"
+      follow: no
+      backup: yes
+      remote_src: yes
+    loop: "{{ folder_output.files }}"
+    
+  # Loop through list of files and do everthing that needs to be done
+  - name: Loop through files on machine
+    include_tasks: ENV_FILE_WIN_IMPORT.yml
+    loop: "{{ folder_output.files }}"
+
+  - name: Restart Xbox Live
+    win_service:
+      #display_name: Xbox Live Auth Manager
+      name: XblAuthManager
+      state: restarted
+
+  - name: Restart Xbox Live Game Save
+    win_service:
+      name: XblGameSave
+      state: restarted

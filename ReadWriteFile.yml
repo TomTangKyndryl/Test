@@ -1,0 +1,73 @@
+---
+- name: Hello World!
+  hosts: all
+
+  tasks:
+
+    - name: Read write text file test
+      block:
+
+        - name: Create Directory
+          file:
+            path: /tmp/MyTest
+            state: directory
+          delegate_to: 127.0.0.1
+          run_once: true
+          
+        - name: Creating an empty file
+          file:
+            path: "/tmp/MyTest/MyFile.txt"
+            state: touch
+          delegate_to: 127.0.0.1
+          run_once: true
+       
+        - win_shell: Get-Service
+          register: stuff
+       
+        - name: Write debug message
+          debug:
+            msg: |
+              "XXX Host {{ ansible_hostname }}"
+              "{{ stuff.stdout }}"
+              ""
+              ""
+       
+        - name: Copy services to file
+          lineinfile:
+            path: "/tmp/MyTest/MyFile.txt"
+            line: |
+              "XXX Host {{ ansible_hostname }}"
+              "{{ stuff.stdout }}"
+              ""
+              ""
+            insertafter: EOF
+          delegate_to: 127.0.0.1
+          
+    - name: Read write text file test
+      block:
+        - name: Read file to fact
+          set_fact:
+            file_text: "{{ lookup('file', '/tmp/MyTest/MyFile.txt') }}"
+          run_once: true
+          delegate_to: 127.0.0.1
+        
+        - name: Show content from file
+          debug:
+            msg: |
+              "{{ file_text | replace('\\r\\n','\\\r\\\n') }}"
+          # Only run on the last host
+          when: inventory_hostname != ansible_play_hosts_all[-1]
+          # https://devops.stackexchange.com/questions/6058/can-i-check-whether-ansible-is-on-last-batch-of-rolling-update-serial-25
+          run_once: true
+
+        # Sending an e-mail using Gmail SMTP servers
+        - mail:
+          host: smtp.gmail.com
+          port: 587
+          #username: username@gmail.com
+          #password: mysecret
+          to: Chris Vickers <john.smith@example.com>
+          subject: Ansible-report
+          body: '{{ file_text }}'
+          delegate_to: localhost
+          run_once: true

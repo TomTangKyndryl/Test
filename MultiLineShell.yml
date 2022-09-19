@@ -1,0 +1,36 @@
+---
+- name: Test multiline shell script!
+  hosts: all
+
+#  vars:
+#    one_server:
+#      - 172.16.25.22
+#      - Win10Client2
+
+  tasks:
+       
+    - name: Run shell
+      #hosts: 172.16.25.22
+      win_shell: |
+       Try
+       {
+         # Try something that could cause an error
+         1/0
+       }
+       Catch
+       {
+         # Catch any error
+         Write-Host "An error occurred"
+       }
+       Finally
+       {
+         # [Optional] Run this part always
+         Write-Host "cleaning up ..."
+       }
+      register: result
+      when: ansible_hostname in one_server
+       
+    - name: Write debug message
+      debug:
+        msg: "{{ result.stdout }}"
+      when: ansible_hostname in one_server

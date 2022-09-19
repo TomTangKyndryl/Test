@@ -1,0 +1,20 @@
+# Get all information
+#- win_shell: Get-Service -Displayname "*{{ item }}*"
+
+---
+- win_shell: Get-Service -Displayname "*{{ item }}*" | select status
+  register: stuff
+  
+- name: Add to fact
+  set_fact:
+    results: "{{ results | default([]) + [{ 'service': item, 'status': stuff.stdout_lines[3] }] }}"
+
+- name: Print output
+  debug: msg={{ stuff }}
+
+
+# | default([])
+
+#        {{ dict_combined | default([])
+#           + [item | combine(age_item)]
+#        }} 

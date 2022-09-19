@@ -1,0 +1,17 @@
+---
+- name: Hello World!
+  hosts: all
+
+  tasks:
+
+  - name: Creates directory as directory
+    block:
+      - name: Create Directory
+        file:
+          path: /tmp/MyTest
+          state: directory
+      - name: Pause for 2 mins
+        pause:
+          minutes: 2
+    delegate_to: 127.0.0.1
+    run_once: True

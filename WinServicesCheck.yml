@@ -1,0 +1,25 @@
+---
+- name: Check the services
+  hosts: all
+  vars:
+    service_to_check:
+      - Network
+      - Remote
+ 
+  tasks:
+    - name: Set facts
+      set_fact:
+        results: []
+  
+    - name: Go through each service
+      include_tasks: "WinServicesCheck_LoopedTasks.yml"
+      loop: "{{ service_to_check }}"
+      
+    - name: Print output
+      debug: msg={{ results }}
+
+# Email module
+# https://docs.ansible.com/ansible/2.9/modules/mail_module.html#mail-module
+
+# Service status
+# https://theitbros.com/get-service-powershell/

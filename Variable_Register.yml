@@ -1,7 +1,11 @@
-- name: Show value of whoami
+---
+- name: Show value of whoami v2
   hosts: all
   tasks:
-    - name: capture output of whoami command
-      command: whoami
-      register: login
-    - debug: var=login.stdout
+    - name: Save the result of 'whoami' in 'whoami_out'
+      win_command: whoami
+      register: whoami_out
+   
+    - name: Print output
+      debug:
+        msg: "whoami output: {{ whoami_out.stdout_lines[0] }}"

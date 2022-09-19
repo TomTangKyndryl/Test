@@ -1,0 +1,16 @@
+---    
+- name: "Reading the values in {{ item.path }}"
+  win_shell: "cat {{ item.path }}"
+  register: text_from_file
+    
+- name: Write message when the value exists
+  debug:
+    msg: "KDE_TRANSPORT value was already found in env file"
+  when: '"KDE_TRANSPORT" in text_from_file.stdout'
+
+- name: Add new line to env
+  win_lineinfile:
+    path: "{{ item.path }}"
+    line: KDE_TRANSPORT=IP.PIPE PORT:1918 use:y IP.SPIPE PORT:3660 use:y IP use:n SNA use:n http_server:n
+    insertafter: EOF
+  when: '"KDE_TRANSPORT" not in text_from_file.stdout'

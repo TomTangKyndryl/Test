@@ -1,0 +1,50 @@
+---
+- name: Text test playbook
+  hosts: all
+  vars:
+    text1: This is a single line
+    text2: "This is a single line"
+    text3: >
+      This is the first line
+      This is the second line
+      This is the third line
+    text4: |
+      This is the first line
+      
+      This is the third line
+      
+      This is the fifth line
+    text5: "First line\nSecond line\n\nFourth line"
+    text6: |-
+        First line
+           Second line with indent
+        third line   
+
+  tasks:
+
+  - name: Hello World! {{ text1 }}
+    shell: echo "Text1"
+    
+  - name: Hello World! {{ text2 }}
+    shell: echo "Text2"
+    
+  - name: Hello World! {{ text3 }}
+    shell: echo "Text3"
+    
+  - name: Hello World! {{ text4 }}
+    shell: echo "Text4"
+    
+  - name: Hello World! {{ text5 }}
+    shell: echo "Text5"
+    
+  - name: Hello World! {{ text6 }}
+    shell: echo "Text6"
+
+  - name: Setting facts so that they will be persisted in the fact cache
+      set_fact:
+        one_fact: This value
+        other_fact: Something else
+        cacheable: yes
+        
+  - name: Hello World! {{ one_fact }}
+    shell: echo "Facts"

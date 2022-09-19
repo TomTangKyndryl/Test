@@ -1,0 +1,12 @@
+---
+# tasks file for was-status-handler
+
+- name: connection checker
+  hosts: all
+  ignore_errors: true
+    
+  tasks:
+
+    - name: "Linux Agent checker"
+      include_tasks: attempt_connection_and_action.yml
+      when: ansible_facts['os_family'] != "Windows"

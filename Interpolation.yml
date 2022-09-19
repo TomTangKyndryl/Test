@@ -1,0 +1,15 @@
+
+---
+- name: Interpolation test
+  hosts: all
+  vars:
+    text1: This is a single line "
+    text2: echo "ran"
+
+  tasks:
+        
+  - name: "{{ text1 | regex_replace('a', 'AA')  }}"
+    shell: "{{ text2 }}"
+        
+  # - name: "{{ text1 | regex_replace('\"', '\"\"') | regex_replace('\'', '\'\'') }}"
+  #  shell: echo "{{ text1 | regex_replace('\"', '\"\"') }}"
